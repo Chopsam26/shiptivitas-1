@@ -1,8 +1,17 @@
 import React from 'react';
 import Card from './Card';
 import './Swimlane.css';
+import dragula from 'dragula';
 
 export default class Swimlane extends React.Component {
+  constructor(props) {
+    super(props);
+    this.dragulaContainer = React.createRef();
+    
+  }
+  
+  
+  
   render() {
     const cards = this.props.clients.map(client => {
       return (
@@ -18,10 +27,10 @@ export default class Swimlane extends React.Component {
     return (
       <div className="Swimlane-column">
         <div className="Swimlane-title">{this.props.name}</div>
-        <div className="Swimlane-dragColumn" ref={this.props.dragulaRef}>
+        <div className="Swimlane-dragColumn" ref={this.dragulaContainer} data-swimlane-id={this.props.swimlaneId}>
           {cards}
         </div>
       </div>);
   }
-
+  
 }
